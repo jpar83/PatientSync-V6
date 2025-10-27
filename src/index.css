@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  select, input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="tel"] {
+    line-height: 1.4;
+  }
+  :focus-visible {
+    outline: 2px solid var(--pc-blue-600);
+    outline-offset: 2px;
+  }
+}
+
+html {
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  background-color: var(--color-neutral-bg);
+  color: var(--color-text);
+  transition: background-color .2s, color .2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Update utilities */
+@layer utilities {
+  .elevate {
+    @apply transition-shadow;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+  }
+  .elevate:hover {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+  }
+  [data-theme="dark"] .elevate {
+    box-shadow: 0 1px 1px rgb(255 255 255 / 0.05);
+  }
+  [data-theme="dark"] .elevate:hover {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
+  }
+  .lift       { @apply transition-transform duration-200 ease-out hover:-translate-y-0.5; }
+  .fade-in    { animation: fade-in .18s ease-out both; }
+  .scale-in   { animation: scale-in .16s ease-out both; }
+
+  .soft-card {
+    @apply rounded-2xl bg-surface border border-border-color;
+    box-shadow: var(--shadow-card);
+  }
+  [data-theme="dark"] .soft-card {
+    background-color: #1C1C1C;
+    border-color: #2C2C2C;
+    box-shadow: none;
+  }
+  .chip { 
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold bg-gray-100 text-gray-700; 
+  }
+  [data-theme="dark"] .chip {
+    background-color: #2B2B2B;
+    @apply text-gray-200;
+  }
+
+  /* --- Density system --- */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px }
+  .kpi-tile { padding: 14px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .table-wrap { overflow: auto; -webkit-overflow-scrolling: touch }
+  .sticky-header { position: sticky; top: 0; background: var(--bg, #fff); z-index: 2 }
+  
+  /* Reserve space for the bottom navigation bar on mobile devices */
+  .pb-nav-safe {
+    padding-bottom: calc(72px + 60px + env(safe-area-inset-bottom, 1rem));
+  }
+}
+
+/* Keyframes */
+@keyframes fade-in { from {opacity:0; transform:translateY(2px)} to {opacity:1; transform:none} }
+@keyframes scale-in { from {opacity:0; transform:scale(.98)} to {opacity:1; transform:scale(1)} }
+@keyframes pulse-bg {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: var(--color-primary-light); }
+}
+
+.pulse-bg-once {
+  animation: pulse-bg 0.8s ease-in-out;
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+mark {
+    background-color: theme('colors.highlight');
+    padding: 0 2px;
+    border-radius: 2px;
+}
+[data-theme="light"] mark {
+    color: #3f3f46; /* zinc-700 */
+}
+[data-theme="dark"] mark {
+    background-color: #f59e0b; /* amber-500 */
+    color: #18181b; /* zinc-900 */
+}
+
+
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.overflow-auto, .overflow-y-auto, .overflow-x-auto {
+  scroll-behavior: smooth;
+}
+
+.table-scrolled thead {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .table-scrolled thead {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@layer components {
+  .pc-label-chip {
+    @apply inline-block rounded-md px-2.5 py-1 text-[13px] font-medium tracking-wide text-[#0A3F6E];
+    background-color: var(--pc-blue-50);
+  }
+  [data-theme="dark"] .pc-label-chip {
+    @apply text-[#A8CBE8];
+  }
+  .profile-dropdown {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    backdrop-filter: none;
+  }
+}
+
+/* 🌗 Universal Text Contrast Fix (v2) */
+:root, [data-theme="light"] {
+  --text-main: #0f172a; /* deep slate */
+}
+[data-theme="dark"] {
+  --text-main: #f8fafc; /* off-white */
+}
+
+.patient-name,
+.referral-card .patient-name,
+.referral-list-item .patient-name,
+.contact-name,
+.user-display-name,
+.header-username {
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  opacity: 1 !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .patient-name,
+[data-theme="dark"] .referral-card .patient-name,
+[data-theme="dark"] .referral-list-item .patient-name {
+  color: var(--color-text) !important;
+}
+
+.referral-card .referral-status,
+.referral-card .payer-name {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .patient-name,
+[data-theme="light"] .referral-card .patient-name {
+  text-shadow: 0 0 1px rgba(255,255,255,0.4);
+}
+
+/* 🎨 Optional subtle background contrast for name cards */
+.referral-card,
+.patient-card {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px;
+}
+
+[data-theme="dark"] .referral-card,
+[data-theme="dark"] .patient-card {
+    background-color: var(--color-surface) !important;
+    border-color: var(--color-border) !important;
+}
+
+/* Stoplight Layout Fixes */
+.card, .card * { 
+  min-width: 0;
+}
+
+.truncate-soft {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 10px;
+}
+
+@container (max-width: 420px) {
+  .truncate-soft { 
+    white-space: normal;
+  }
+}
+
+@container (max-width: 520px) {
+  .card-title { font-size: 14px !important; }
+  .meta-line { font-size: 12px !important; }
+}
+
+/* New Compact Referral Row Styles */
+.ref-row {
+  display: grid;
+  grid-template-columns: auto 1fr minmax(80px, 0.7fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  text-align: left;
+  transition: background-color 0.2s;
+}
+.ref-row:hover {
+  background-color: rgba(0,0,0,0.02);
+}
+[data-theme="dark"] .ref-row:hover {
+  background-color: rgba(255,255,255,0.04);
+}
+.ref-row .name { 
+  font-weight: 600;
+  color: var(--text-main);
+}
+.ref-row .payer, .ref-row .age { 
+  color: var(--color-muted); 
+  font-size: 12px;
+}
+.ref-row .cta { 
+  font-size: 12px; 
+  opacity: .85;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 560px) {
+  .ref-row { grid-template-columns: auto 1fr auto; }
+  .ref-row .payer, .ref-row .age { display: none }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #patient-sheet, #patient-sheet * {
+    visibility: visible;
+  }
+  #patient-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+}
