@@ -1,0 +1,12 @@
+{
+ "tables":{
+  "patients":["id","name","dob","address","primary_insurance","secondary_insurance","doctor_id","pcp_id","diagnosis"],
+  "orders":["id","patient_id","chair_type","accessories","workflow_stage","status","rep_name","referral_date","payer_name","auth_status","po_number","eta","serial_number","claim_number","billing_date","last_stage_change","last_stage_note"],
+  "documents":["id","order_id","doc_type","file_url","verified","uploaded_at"],
+  "doctors":["id","name","specialty","contact"],
+  "vendors":["id","name","service_type","contact"],
+  "users":["id","name","role","email"],
+  "workflow_history":["id","order_id","previous_stage","new_stage","note","changed_by","changed_at"]
+ },
+ "doc_types":["referral_form","rx","face_sheet","insurance_card","f2f_note","pt_eval","swo","dpd","telehealth_form","aor_form","par_cover","submission_log","vendor_quote","purchase_order","pod","delivery_ticket","audit_checklist"]
+}

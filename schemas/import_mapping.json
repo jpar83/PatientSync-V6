@@ -1,0 +1,8 @@
+{
+ "header_row_index":1,
+ "skip_rows_before_header":true,
+ "fields":{"Name":"chair_type","First Item":"accessories","Primary Insurance Name":"insurance_primary","Client Name":"patient_name"},
+ "constants":{"rep_name":"Kristin Segal","import_source":"Open Order Report"},
+ "defaults":{"workflow_stage":"Referral Received","status":"Pending Intake"},
+ "dedupe_keys":["patient_name","insurance_primary"]
+}

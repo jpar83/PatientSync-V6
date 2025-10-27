@@ -1,0 +1,14 @@
+{
+ "workflow":[
+  {"stage":"Referral Received","target_days": 2, "ui_section":"Referral Tab","fields":["rep_name","patient_name","insurance_primary","chair_type","accessories","referral_date","notes"],"required_docs":["referral_form","rx"],"status":["Pending Intake","Duplicate","Archived"]},
+  {"stage":"Patient Intake & Demographics","target_days": 3, "ui_section":"Patient Info Tab","fields":["patient_name","dob","address","insurance_primary","insurance_secondary","doctor","pcp","diagnosis","clinical_notes"],"required_docs":["face_sheet","insurance_card"],"status":["In Progress","Missing Info"]},
+  {"stage":"Insurance Verification","target_days": 2, "ui_section":"Insurance Tab","fields":["plan_type","copay","deductible","verified_by","verification_date"],"required_docs":["aor_form"],"status":["Verified","Pending","Denied"]},
+  {"stage":"Clinical Review","target_days": 5, "ui_section":"Clinical Tab","fields":["dx_code","hcpcs_code","reviewer","review_notes"],"required_docs":["pt_eval","f2f_note"],"status":["Reviewed","Needs Info"]},
+  {"stage":"ATP / PT Assessment","target_days": 7, "ui_section":"Assessment Tab","fields":["atp_name","assessment_date","assessment_result","assessment_notes"],"required_docs":["atp_eval_form"],"status":["Scheduled","Completed","Rescheduled"]},
+  {"stage":"Documentation Verification","target_days": 3, "ui_section":"Documents Tab","fields":["f2f_note","pt_eval","swo","dpd","telehealth_form","aor_form"],"required_docs":["f2f_note","pt_eval","swo","dpd","telehealth_form","aor_form"],"status":["Complete","Missing","Flagged"]},
+  {"stage":"Preauthorization (PAR)","target_days": 10, "ui_section":"Preauth Tab","fields":["payer_name","submission_date","confirmation_number","auth_status"],"required_docs":["par_cover","submission_log"],"status":["Submitted","Approved","Denied"]},
+  {"stage":"Vendor / Order Processing","target_days": 5, "ui_section":"Vendor Tab","fields":["vendor_name","model","po_number","eta","serial_number"],"required_docs":["vendor_quote","purchase_order"],"status":["Ordered","Backordered","Delivered"]},
+  {"stage":"Delivery & Billing","target_days": 7, "ui_section":"Delivery Tab","fields":["delivery_date","technician","claim_number","billing_date"],"required_docs":["pod","delivery_ticket"],"status":["Delivered","Billed","Paid"]},
+  {"stage":"Post-Delivery Follow-up / Archive","target_days": 14, "ui_section":"Follow-Up Tab","fields":["followup_date","contact_name","followup_result","archive_flag"],"required_docs":["audit_checklist"],"status":["Closed","Audit Ready"]}
+ ]
+}
