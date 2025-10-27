@@ -1,0 +1,55 @@
+:root {
+  /* 🎨 Color tokens - Based on Visual Consistency Guide */
+  --color-accent: #00BFA6;
+  --color-success: #1DD1A1;
+  --color-warning: #F6B93B;
+  --color-error: #E55039;
+  
+  /* Backgrounds */
+  --color-neutral-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f9fafb;
+
+  /* Text */
+  --color-text: #111827;
+  --color-muted: #6b7280;
+
+  /* Borders */
+  --color-border: #e5e7eb;
+
+  /* ✨ Shadows & Motion */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --transition-default: 200ms ease-in;
+
+  /* Patients Choice Brand Blues */
+  --pc-blue-700: #0F5FA6;
+  --pc-blue-600: #2B7BBB;
+  --pc-blue-50: #EAF3FB;
+  --pc-focus: rgba(43, 123, 187, 0.35);
+}
+
+[data-theme="dark"] {
+  /* Backgrounds */
+  --color-neutral-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-surface-alt: #2d2d2d;
+
+  /* Text */
+  --color-text: #f3f4f6;
+  --color-muted: #9ca3af;
+  
+  /* Borders */
+  --color-border: #2d2d2d;
+
+  /* Accents - Desaturated for dark mode */
+  --color-accent: #00ffaa;
+  --color-success: #2EEFBF;
+  --color-warning: #F8C765;
+  --color-error: #fb6f5f;
+
+  /* Dark theme adjustments for PC Blue */
+  --pc-blue-700: #5091C9;
+  --pc-blue-600: #3A84C4;
+  --pc-blue-50: #1A242D;
+  --pc-focus: rgba(80, 145, 201, 0.35);
+}
